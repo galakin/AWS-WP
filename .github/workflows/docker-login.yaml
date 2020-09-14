@@ -25,7 +25,6 @@ jobs:
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
-jobs:
   qemu:
     runs-on: ubuntu-latest
     steps:
