@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  wp:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      # network: testwp
+    container_name: wordpress.sql
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress  
+
+    volumes:
+      - "./db/:/var/lib/mysql:z"
+      - "./testwp/:/var/www/app:z"
+    expose:
+      - "80"
+      - "3306"
+    ports:
+      - "80:80"
+    networks: 
+      - wp_net
+
+
+networks:
+  wp_net:
+    driver: bridge

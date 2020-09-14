@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    container_name: mysql
+    image: mysql:5.7
+     #volumes: 
+     # - ./db/:/var/lib/mysql:z
+    # restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress    
+
+  php:
+    container_name: wp-php
+    image: romeoz/docker-apache-php:7.1
+    volumes:
+      - ./testwp/:/var/www/app/:z
+    ports: 
+      - "80:80"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+volumes:
+  db_data: {}

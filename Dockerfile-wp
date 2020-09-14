@@ -1,0 +1,11 @@
+FROM  romeoz/docker-apache-php:7.1
+
+COPY  ./testwp/ /var/www/html/
+      
+ENV MYSQL_ROOT_PASSWORD somewordpress
+ENV MYSQL_DATABASE wordpress   
+ENV MYSQL_USER wordpress
+ENV MYSQL_PASSWORD wordpress
+
+EXPOSE 80
+EXPOSE 3306 
