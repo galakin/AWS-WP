@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Hello world
-        run: echo "Hello world!\nThis is your master" 
-        #env:
-        #  FIRST_NAME: Mona
-        #  middle_name: The
-        #  Last_Name: Octocat 
+        run: printf "Hello world!\nHere is your master\nMy name is $first_name $last_name" 
+        env:
+          first_name: Mario
+          last_name: Rossi 
