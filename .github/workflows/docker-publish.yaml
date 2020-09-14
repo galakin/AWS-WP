@@ -1,5 +1,5 @@
 name: Docker publish
-description: load source and Dockerfile to create an image and publish it on docker-hub
+#description: load source and Dockerfile to create an image and publish it on docker-hub
 
 on: 
   push:
