@@ -36,8 +36,8 @@ jobs:
         with:
           image: tonistiigi/binfmt:latest
           platforms: all
-#      - name: Available platforms
-#        run: echo ${{ steps.qemu.outputs.platforms }}
+      - name: Available platforms
+        run: echo ${{ steps.qemu.outputs.platforms }}
 
 #  main:
 #    runs-on: ubuntu-latest
