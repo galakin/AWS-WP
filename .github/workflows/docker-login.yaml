@@ -43,8 +43,8 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 jobs:
   aws-build:
-    runs-on: ubuntu:latest
-     steps:
+    runs-on: ubuntu-latest
+    steps:
       run: echo "Hello World"
 #    - uses: kciter/aws-ecr-action@master
 #      with:
