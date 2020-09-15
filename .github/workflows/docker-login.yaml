@@ -72,7 +72,7 @@ jobs:
           java-version: 11
 
       - name: Render Amazon ECS task definition for first container
-        id: render-web-container
+        id: render-web-container-2
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         env:  
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} 
