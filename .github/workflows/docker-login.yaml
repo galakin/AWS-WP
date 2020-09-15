@@ -73,18 +73,6 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
      
       # Automatically deploy to ECS
-      - name: Render Amazon ECS task definition for first container
-        id: render-app-container
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        env:  
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} 
-          IMAGE_TAG: sql-${{ github.sha }}
-          ECR_REPOSITORY: gitaction-test
-        with:
-          task-definition: task-definition.json
-          container-name: wp  
-          image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def-2
         uses: aws-actions/amazon-ecs-render-task-definition@v1
@@ -92,20 +80,15 @@ jobs:
           task-definition: task-definition.json
           container-name: wp         
           image: ${{ steps.build-image-2.outputs.image }}
-
-#       - name: Deploy Amazon ECS task definition
-#         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-#         with:
-#           task-definition: task-definition.json
-#           service: my-service
-#           cluster: default-cluster
-#           wait-for-service-stability: true
-
-      - name: Run Task on Amazon ECS
-        uses: smitp/amazon-ecs-run-task@v1
+    
+      - name: Render Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1 
+        env:  
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} 
+          IMAGE_TAG: sql-${{ github.sha }}
         with:
           task-definition: task-definition.json
-          cluster: default-cluster
-          count: 1
-          started-by: github-actions-${{ github.actor }}
-          wait-for-finish: true
+          container-name: db
+          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG} 
+
