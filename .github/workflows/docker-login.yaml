@@ -47,7 +47,8 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t gitaction-test .
-          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:${IMAGE_TAG}
+          docker tag gitaction-test:latest 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:latest
+          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:latest
 
 
 
