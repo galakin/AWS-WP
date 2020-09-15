@@ -6,7 +6,7 @@ on:
     branches: master
 
 jobs:
-  qemu:
+  build-n-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,11 +33,11 @@ jobs:
           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
           docker tag test-image ${USERNAME}/test-image:latest
-      
+          docker tag test-image ${USERNAME}/test-image:${{ github.sha }} 
       - name: Push 
         env:
           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
          docker push ${USERNAME}/test-image:latest
-      #- name: Image digest
-      #  run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
