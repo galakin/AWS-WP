@@ -80,7 +80,7 @@ jobs:
           #aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-2
 
-     - name: Fill in the new image ID in the Amazon ECS task definition
+      - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
