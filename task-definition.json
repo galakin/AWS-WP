@@ -41,7 +41,7 @@
     "EC2"
   ],
   "taskDefinitionArn": "arn:aws:ecs:us-east-2:370599928061:task-definition/zp-wp:6",
-  "family": "zp-wp",
+  "family": "git-wp",
   "requiresAttributes": [
     {
       "name": "com.amazonaws.ecs.capability.ecr-auth"
@@ -53,8 +53,6 @@
   "requiresCompatibilities": [
     "EC2"
   ],
-  "revision": 6,
-  "status": "ACTIVE",
   "volumes": [
     {
       "name": "wpvol",
