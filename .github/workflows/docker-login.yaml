@@ -46,11 +46,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
-    - uses: kciter/aws-ecr-action@maste
-      with:
-        access_key_id: ${{ secrets.AWS_ACCESS_KEY}}
-        secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
-        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-        repo: gitaction-test
-        region: us-east-2
-        tags: latest,${{ github.sha }}
+      - uses: kciter/aws-ecr-action@maste
+        with:
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY}}
+          secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+          account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+          repo: gitaction-test
+          region: us-east-2
+          tags: latest,${{ github.sha }}
