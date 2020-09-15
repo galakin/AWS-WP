@@ -33,9 +33,10 @@ jobs:
       - name: Publish to Registry
         uses: HurricanKai/Publish-Docker-Github-Action@master
         with:
-          name: testImage/repository
+          name: test-image/repository
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          snapshot: true
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
