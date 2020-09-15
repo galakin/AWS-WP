@@ -41,3 +41,17 @@ jobs:
          docker push ${USERNAME}/test-image:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  aws-build:
+    runs-on: ubuntu:latest
+     steps:
+      run: echo "Hello World"
+#    - uses: kciter/aws-ecr-action@master
+#      with:
+#        access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#        secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+#        repo: docker/repo
+#        region: ap-northeast-2
+#        tags: latest,${{ github.sha }}
+#        create_repo: true
