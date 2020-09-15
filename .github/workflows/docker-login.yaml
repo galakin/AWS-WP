@@ -45,7 +45,7 @@ jobs:
   aws-build:
     runs-on: ubuntu-latest
     steps:
-      run: echo "Hello World"
+      - run: echo "Hello World"
 #    - uses: kciter/aws-ecr-action@master
 #      with:
 #        access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
