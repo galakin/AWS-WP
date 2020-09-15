@@ -74,6 +74,8 @@ jobs:
           ECR_REPOSITORY: gitaction-test
           IMAGE_TAG: sql-${{ github.sha }}
         run: | 
-          docker build -t gitaction-test .
+          docker build -t -f Dockerfile-sql .
           docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
           docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
+
+
