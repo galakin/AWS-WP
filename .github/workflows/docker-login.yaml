@@ -28,12 +28,12 @@ jobs:
       - name: Build
         run: docker build -t test-image .
       - name: Tags Image
-        with:
+        env:
           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
           docker tag back ${USERNAME}/test-image:latest
       - name: Push 
-        with:
+        env:
           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
          docker push ${USERNAME}/test-image:latest
