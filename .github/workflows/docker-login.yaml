@@ -41,7 +41,7 @@ jobs:
          docker push ${USERNAME}/test-image:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-
+jobs:
   aws-build:
     runs-on: ubuntu:latest
      steps:
