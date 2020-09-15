@@ -54,3 +54,5 @@ jobs:
           repo: gitaction-test
           region: us-east-2
           tags: latest,${{ github.sha }}
+          path: /home/jacopopela/Progetti/AWS-WP
+
