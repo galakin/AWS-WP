@@ -52,7 +52,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: gitaction-test
-          IMAGE_TAG: sql-${{ github.sha }}
+          IMAGE_TAG: wp-${{ github.sha }}
         run: | 
           docker build -t gitaction-test -f Dockerfile-wp .
           docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
