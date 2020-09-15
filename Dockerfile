@@ -1,8 +1,8 @@
 FROM nginx:1.19
 
-RUN apt-get update 
-COPY index.html usr/share/nginx/html/index.html
+#RUN apt-get update 
+#COPY index.html usr/share/nginx/html/index.html
+#EXPOSE 80
 
-
-EXPOSE 80
+CMD printf "Hello World!"
 
