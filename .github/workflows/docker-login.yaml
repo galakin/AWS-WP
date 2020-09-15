@@ -80,15 +80,15 @@ jobs:
           task-definition: task-definition.json
           container-name: wp         
           image: ${{ steps.build-image-2.outputs.image }}
-      
-      - name: Render Amazon ECS task definition
-        id: render-web-container
+     
+      - name: Modify Amazon ECS task definition with second container
+        id: render-app-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1 
         env:
           ECR_REPOSITORY: gitaction-test
           IMAGE_TAG: wp-${{ github.sha }}
         with:
-          task-definition: task-definition.json
+          task-definition: ${{ steps.render-db-container.outputs.task-definition }}
           container-name: wp
           image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG} 
 
