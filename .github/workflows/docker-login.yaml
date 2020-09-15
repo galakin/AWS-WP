@@ -28,10 +28,14 @@ jobs:
       - name: Build
         run: docker build -t test-image .
       - name: Tags Image
+        with:
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
-          docker tag back ${{ secrets.DOCKERHUB_USERNAME }}/test-image:latest
-       - name: Push
+          docker tag back ${USERNAME}/test-image:latest
+      - name: Push 
+        with:
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
-         docker push ${{ secrets.DOCKER_USER }}/test-image:latest
+         docker push ${USERNAME}/test-image:latest
       #- name: Image digest
       #  run: echo ${{ steps.docker_build.outputs.digest }}
