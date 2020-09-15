@@ -1,6 +1,6 @@
 FROM  romeoz/docker-apache-php:7.1
 
-COPY  ./testwp/ /var/www/html/
+COPY  ./testwp/ /var/www/app/
       
 ENV MYSQL_ROOT_PASSWORD somewordpress
 ENV MYSQL_DATABASE wordpress   
