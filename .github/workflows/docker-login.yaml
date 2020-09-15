@@ -87,7 +87,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: task-definition.json
-          service: git-test
+          service: wp-test
           cluster: cluster-test
           wait-for-service-stability: true
 
