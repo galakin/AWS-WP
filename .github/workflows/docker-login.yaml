@@ -56,4 +56,10 @@ jobs:
         run: | 
           docker build -t gitaction-test -f Dockerfile-wp .
           docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
-          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
+           dockerpush 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
+  
+  deploy-to-ecs:
+    name: Deploy to ECS
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"
