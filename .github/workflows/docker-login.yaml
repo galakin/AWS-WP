@@ -99,3 +99,4 @@ jobs:
           task-definition: task-definition.json
           service: my-service
           cluster: default-cluster
+          wait-for-service-stability: true
