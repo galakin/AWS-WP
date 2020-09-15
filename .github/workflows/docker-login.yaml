@@ -89,6 +89,6 @@ jobs:
           IMAGE_TAG: wp-${{ github.sha }}
         with:
           task-definition: task-definition.json
-          container-name: web
+          container-name: wp
           image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG} 
 
