@@ -46,4 +46,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
-      - run: pwd
+      - run: pwd && ls
