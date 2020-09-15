@@ -47,8 +47,8 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t gitaction-test .
-          docker tag ${ECR_REPOSITORY}:latest 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:latest
-          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:latest
+          docker tag ${ECR_REPOSITORY}:${IMAGE_TAG} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
+          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
 
 
 
