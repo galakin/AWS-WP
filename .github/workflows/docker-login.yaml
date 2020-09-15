@@ -52,7 +52,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: my-service
+          service: wp-test 
           cluster: cluster-test
           wait-for-service-stability: true
 
