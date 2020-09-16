@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-n-push-sql:
-  name: Build and Push to AWS
+    name: Build and Push to AWS
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
