@@ -67,9 +67,9 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:wp-latest"
      
 # Automatically deploy to ECS 
-      - name: Stop previous ECS service
-        run: |
-          aws ecs delete-service --service=zp-wordpress --cluster=default-cluster
+      #- name: Stop previous ECS service
+      #  run: |
+      #    aws ecs delete-service --service=zp-wordpress --cluster=default-cluster
 
       - name: Modify Amazon ECS task definition with second container
         id: render-app-container
