@@ -99,5 +99,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - name: Load and deploy
-        run: aws ecs run-task --cluster default-cluster --task-definition zp-wp:19 --count 1
+        run: aws ecs create-service --cluster default-cluster --service-name zp-wordpress --task-definition zp-wp:20
+        # run-task --cluster default-cluster --task-definition zp-wp:19 --count 1
 
