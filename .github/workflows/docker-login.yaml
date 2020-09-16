@@ -85,7 +85,7 @@ jobs:
           task-definition: ${{ steps.render-app-container.outputs.task-definition }}
           cluster: default-cluster 
 
-deploy-to-ecs:
+  deploy-to-ecs:
     name: Deploy task to ECS cluster 
     runs-on: ubuntu-latest
     steps:
