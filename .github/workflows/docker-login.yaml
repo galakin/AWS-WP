@@ -1,4 +1,3 @@
-#TODO NOTE use aswdock Dockerfile
 name: ci
 
 on:
@@ -80,24 +79,14 @@ jobs:
           image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-latest
 
       - name: Deploy Amazon ECS task definition
+        id: ecs-deploy
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.render-app-container.outputs.task-definition }}
           cluster: default-cluster 
+      - name: test print
+        run: printf ${{steps.ecs-deploy.outputs}}
 
-  deploy-to-ecs:
-    name: Deploy task to ECS cluster 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-east-2
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
       - name: Load and deploy
         run: aws ecs create-service --cluster default-cluster --service-name zp-wordpress --task-definition zp-wp:20 --desired-count=1
         # run-task --cluster default-cluster --task-definition zp-wp:19 --count 1
