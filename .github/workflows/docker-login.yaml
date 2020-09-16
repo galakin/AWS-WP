@@ -7,6 +7,7 @@ on:
 
 jobs:
   build-n-push-sql:
+  name: Build and Push to AWS
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,9 +31,9 @@ jobs:
           IMAGE_TAG: sql-${{ github.sha }}
         run: | 
           docker build -t gitaction-test -f Dockerfile-sql .
-          docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
+          docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:latest
           docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
 
 # Automatically deploy to ECS
       - name: Set up JDK 11
@@ -63,8 +64,8 @@ jobs:
         run: | 
           docker build -t gitaction-test -f Dockerfile-wp .
           docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
-          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG} 
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:$latest
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
      
 # Automatically deploy to ECS 
       - name: Modify Amazon ECS task definition with second container

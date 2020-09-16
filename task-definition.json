@@ -1,54 +1,37 @@
 {
-  "containerDefinitions": [
-    {
-      "portMappings": [],
-      "cpu": 0,
-      "environment": [],
-      "mountPoints": [
-        {
-          "containerPath": "/var/lib/mysql",
-          "sourceVolume": "wpvol"
-        }
-      ],
-      "memory": 200,
-      "volumesFrom": [],
-      "essential": true,
-      "links": [],
-      "name": "db"
-    },
-    {
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "protocol": "tcp",
-          "containerPort": 80
-        }
-      ],
-      "cpu": 0,
-      "environment": [],
-      "mountPoints": [],
-      "memory": 200,
-      "volumesFrom": [],
-      "essential": true,
-      "links": [
-        "db"
-      ],
-      "name": "wp"
-    }
-  ],
-  "placementConstraints": [],
-  "compatibilities": [
-    "EC2"
-  ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:370599928061:task-definition/zp-wp:6",
   "family": "git-wp",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
-    }
+  "executionRoleArn": "arn:aws:iam::112233445566:role/ecsTaskExecutionRole",
+  "containerDefinitions": [    
+      {
+        "cpu": 0,
+        "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:sql-latest",
+        "mountPoints": [
+            {
+            "containerPath": "/var/lib/mysql",
+            "sourceVolume": "wpvol"
+            }
+        ],
+        "memory": 400,
+        "essential": true,
+        "name": "db"
+      },
+      {
+          "name": "wp",
+          "image": "112233445566.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-lates",
+          "cpu": 512,
+          "portMappings": [
+            {
+              "hostPort": 80,
+              "protocol": "tcp",
+              "containerPort": 80
+            }
+          ],
+          "memory": 400,
+          "links": [
+              "db"
+          ],
+          "essential": true
+      }
   ],
   "requiresCompatibilities": [
     "EC2"
@@ -60,5 +43,8 @@
         "sourcePath": "/var/dbfiles"
       }
     }
-  ]
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "1024",
+  "memory": "2048"
 }
