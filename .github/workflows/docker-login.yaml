@@ -50,7 +50,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: db  
-          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
      
 # Build WordPress Container and load it to ECS 
       
@@ -76,5 +76,5 @@ jobs:
         with:
           task-definition: ${{ steps.render-db-container.outputs.task-definition }}
           container-name: wp
-          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG 
+          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG} 
 
