@@ -17,7 +17,7 @@
       },
       {
           "name": "wp",
-          "image": "112233445566.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-lates",
+          "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-lates",
           "cpu": 512,
           "portMappings": [
             {
