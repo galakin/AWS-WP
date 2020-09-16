@@ -1,6 +1,6 @@
 {
   "family": "zp-wp",
-  "containerDefinitions": [    
+  "containerDefinitions": [
       {
         "cpu": 24,
         "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/:latest",
@@ -21,13 +21,6 @@
         "memory": 400,
         "essential": true,
         "name": "db",
-        "mountPoints": [
-            {
-            "readOnly": null,
-            "containerPath": "/var/lib/mysql",
-            "sourceVolume": "wpvol"
-            }
-        ]
       }
   ],
   "compatibilities": [
@@ -39,14 +32,5 @@
   "status": "ACTIVE",
   "networkMode": "awsvpc",
   "cpu": "1024",
-  "memory": "2048", 
-  "volumes": [
-    {
-      "efsVolumeConfiguration": null,
-      "name": "wpvol",
-      "host": {
-        "sourcePath": "/var/dbfiles"
-      },
-      "dockerVolumeConfiguration": null
-    }
+  "memory": "2048",
 }
