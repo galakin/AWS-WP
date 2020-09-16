@@ -83,5 +83,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.render-app-container.outputs.task-definition }}
-          cluster: default-cluster
-
+          cluster: default-cluster 
+      #create and run services
+      - name: Deploy ECS Task on Cluster
+        run: aws ecs run-task --cluster default-cluster --task-definition apache-git:20 --count 1
