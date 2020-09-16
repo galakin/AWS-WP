@@ -63,8 +63,8 @@ jobs:
           IMAGE_TAG: wp-${{ github.sha }}
         run: | 
           docker build -t gitaction-test -f Dockerfile-wp .
-          docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:$wp-latest
-          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:$wp-latest
+          docker tag ${ECR_REPOSITORY} 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:wp-latest
+          docker push 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:wp-latest
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:wp-latest"
      
 # Automatically deploy to ECS 
