@@ -86,4 +86,4 @@ jobs:
           cluster: default-cluster 
       #create and run services
       - name: Deploy ECS Task on Cluster
-        run: aws ecs run-task --cluster default-cluster --task-definition apache-git:20 --count 1
+        run: aws ecs run-task --cluster default-cluster --task-definition zp-wp:19 --count 1
