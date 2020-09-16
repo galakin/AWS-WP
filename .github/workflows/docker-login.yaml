@@ -6,7 +6,7 @@ on:
     branches: master
 
 jobs:
-  build-n-push-sql:
+  build-n-push:
     name: Build and Push to AWS
     runs-on: ubuntu-latest
     steps:
@@ -84,6 +84,11 @@ jobs:
         with:
           task-definition: ${{ steps.render-app-container.outputs.task-definition }}
           cluster: default-cluster 
-      #create and run services
-      - name: Deploy ECS Task on Cluster
+
+deploy-to-ecs:
+    name: Deploy task to ECS cluster 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load and deploy
         run: aws ecs run-task --cluster default-cluster --task-definition zp-wp:19 --count 1
+
