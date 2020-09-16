@@ -46,13 +46,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         env:  
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} 
-          IMAGE_TAG: sql-${{ github.sha }}
+          IMAGE_TAG: sql-latest
           ECR_REPOSITORY: gitaction-test
         with:
           task-definition: task-definition.json
           container-name: db  
-          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
-     
+          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:sql-latest    
+
 # Build WordPress Container and load it to ECS 
       
       - name: Build, tag, and push image to Amazon ECR
@@ -73,17 +73,15 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1 
         env:
           ECR_REPOSITORY: gitaction-test
-          IMAGE_TAG: wp-${{ github.sha }}
+          IMAGE_TAG: wp-latest
         with:
           task-definition: ${{ steps.render-db-container.outputs.task-definition }}
           container-name: wp
-          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG} 
+          image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-latest
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.render-app-container.outputs.task-definition }}
-          service: zp-wp-test
           cluster: default-cluster
-          wait-for-service-stability: true
 

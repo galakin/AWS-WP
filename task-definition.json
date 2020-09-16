@@ -1,49 +1,52 @@
 {
-  "family": "git-wp",
+  "family": "zp-wp",
   "containerDefinitions": [    
       {
-        "cpu": 0,
-        "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:sql-latest",
+        "cpu": 24,
+        "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/:latest",
+        "memory": 400,
+        "essential": true,
+        "name": "wp",
+        "portMappings": [
+            {
+            "hostPort": 80,
+            "protocol": "tcp",
+            "containerPort": 80
+            }
+        ]
+      },
+      {
+        "cpu": 24,
+        "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/apache-git:latest",
+        "memory": 400,
+        "essential": true,
+        "name": "db",
         "mountPoints": [
             {
+            "readOnly": null,
             "containerPath": "/var/lib/mysql",
             "sourceVolume": "wpvol"
             }
-        ],
-        "memory": 400,
-        "essential": true,
-        "name": "db"
-      },
-      {
-          "name": "wp",
-          "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-lates",
-          "cpu": 512,
-          "portMappings": [
-            {
-              "hostPort": 80,
-              "protocol": "tcp",
-              "containerPort": 80
-            }
-          ],
-          "memory": 400,
-          "links": [
-              "db"
-          ],
-          "essential": true
+        ]
       }
+  ],
+  "compatibilities": [
+    "EC2"
   ],
   "requiresCompatibilities": [
     "EC2"
   ],
+  "status": "ACTIVE",
+  "networkMode": "awsvpc",
+  "cpu": "1024",
+  "memory": "2048", 
   "volumes": [
     {
+      "efsVolumeConfiguration": null,
       "name": "wpvol",
       "host": {
         "sourcePath": "/var/dbfiles"
-      }
+      },
+      "dockerVolumeConfiguration": null
     }
-  ],
-  "networkMode": "awsvpc",
-  "cpu": "1024",
-  "memory": "2048"
 }
