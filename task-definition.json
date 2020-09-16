@@ -1,36 +1,59 @@
 {
-  "family": "zp-wp",
   "containerDefinitions": [
-      {
-        "cpu": 24,
-        "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/:latest",
-        "memory": 400,
-        "essential": true,
-        "name": "wp",
-        "portMappings": [
-            {
-            "hostPort": 80,
-            "protocol": "tcp",
-            "containerPort": 80
-            }
-        ]
-      },
-      {
-        "cpu": 24,
-        "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/apache-git:latest",
-        "memory": 400,
-        "essential": true,
-        "name": "db",
-      }
+    {
+      "cpu": 0,
+      "mountPoints": [
+        {
+          "containerPath": "/var/lib/mysql",
+          "sourceVolume": "wpvol"
+        }
+      ],
+      "cpu": 24,
+      "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/apache-git:latest",
+      "memory": 400, 
+      "essential": true,
+      "name": "db"
+    },
+    { 
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "cpu": 24,
+      "image": "370599928061.dkr.ecr.us-east-2.amazonaws.com/:latest",
+      "memory": 400,
+      "essential": true,
+      "links": [
+        "db"
+      ],
+      "name": "wp"
+    }
   ],
   "compatibilities": [
     "EC2"
   ],
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:370599928061:task-definition/zp-wp:5",
+  "family": "zp-wp",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    }
+  ],
   "requiresCompatibilities": [
     "EC2"
   ],
-  "status": "ACTIVE",
-  "networkMode": "awsvpc",
-  "cpu": "1024",
-  "memory": "2048",
+  "volumes": [
+    {
+      "name": "wpvol",
+      "host": {
+        "sourcePath": "/var/dbfiles"
+      }
+    }
+  ]
 }
