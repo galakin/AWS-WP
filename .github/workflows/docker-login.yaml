@@ -20,13 +20,12 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - name: Clear Cluster 
-        run: |
- 
+        run: | 
           TASK=$(aws ecs list-tasks --cluster deploy-cluster)
-          echo $TASK
           TASK=$(echo $TASK | sed 's/.*task\///')
           TASK=$(echo $TASK | sed 's/.[[:blank:]].*//')
-          echo $TASK
+          aws ecs stop-task --task $TASK --cluste deploy-cluster
+          aws ecs delete-service --cluster deploy-cluster --service zp-wordpress
 
 #  build-n-push:
 #    name: Build and Push image to AWS
