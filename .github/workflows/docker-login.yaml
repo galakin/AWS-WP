@@ -119,5 +119,4 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with: 
-          status: ${{ job.status }}
           channel: '#general'
