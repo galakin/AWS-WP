@@ -115,6 +115,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Message
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         uses: act10ns/slack@v1
         with:
           status: starting
