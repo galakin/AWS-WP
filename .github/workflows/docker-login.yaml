@@ -21,7 +21,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - name: Clear Cluster 
         run: | 
-          chmod +x ./clear-cluster.sh
+          chmod +x clear-cluster.sh
           #aws ecs delete-service --cluster deploy-cluster --service zp-wordpress
 
   build-n-push:
