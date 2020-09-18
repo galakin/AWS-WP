@@ -28,10 +28,10 @@ jobs:
           [[ -z "$TASK" ]] && aws ecs stop-task --task $TASK || echo "Nessun task trovato" 
           #aws ecs delete-service --cluster deploy-cluster --service zp-wordpress
 
- build-n-push:
-   name: Build and Push image to AWS
-   runs-on: ubuntu-latest
-   steps:
+  build-n-push:
+    name: Build and Push image to AWS
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
