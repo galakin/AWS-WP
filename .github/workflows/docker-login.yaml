@@ -25,7 +25,7 @@ jobs:
           TASK=$(aws ecs list-tasks --cluster deploy-cluster)
           echo $TASK
           TASK=$(echo $TASK | sed 's/.*task\///')
-          TASK=$(echo $TASK | sed 's/[[:blank:]].*//')
+          TASK=$(echo $TASK | sed 's/.[[:blank:]].*//')
           echo $TASK
 
 #  build-n-push:
