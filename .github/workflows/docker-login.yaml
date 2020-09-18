@@ -109,3 +109,15 @@ jobs:
 
       - name: Load and deploy
         run: aws ecs create-service --cluster deploy-cluster --service-name zp-wordpress --task-definition zp-wp --desired-count=1
+
+  send-slack-message:
+    name: Send Message on Slack
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Message
+      - uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with: 
+          status: ${{ job.status }}
+          channel: '#general'
