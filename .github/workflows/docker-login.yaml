@@ -99,7 +99,7 @@ jobs:
           task-definition: ${{ steps.render-db-container.outputs.task-definition }}
           container-name: wp
           image: 370599928061.dkr.ecr.us-east-2.amazonaws.com/gitaction-test:wp-latest
-#
+
       - name: Deploy Amazon ECS task definition
         id: ecs-deploy
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -109,6 +109,16 @@ jobs:
 
       - name: Load and deploy
         run: aws ecs create-service --cluster deploy-cluster --service-name zp-wordpress --task-definition zp-wp --desired-count=1
+      
+      - uses: act10ns/slack@v1
+        name: Message with final status 
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#workflows'
+        if: always()
 
   send-slack-message:
     name: Send Message on Slack
