@@ -24,6 +24,7 @@ jobs:
           TASK=$(aws ecs list-tasks --cluster deploy-cluster)
           TASK=$(echo $TASK | sed 's/.*task\///')
           TASK=$(echo $TASK | sed 's/.[[:blank:]].*//')
+          echo $TASK
           [[ -z "$TASK" ]] && aws ecs stop-task --task $TASK --cluste deploy-cluster || echo "Nessun task trovato" 
           #aws ecs delete-service --cluster deploy-cluster --service zp-wordpress
 
