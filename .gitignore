@@ -1,3 +1,4 @@
 # Exclude database directory created on-the-fly by Docker
 db
 *.swp
+.git
