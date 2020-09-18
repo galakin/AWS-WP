@@ -83,7 +83,9 @@ jobs:
         with:
           task-definition: ${{ steps.render-app-container.outputs.task-definition }}
           cluster: deploy-cluster
-      
+     
+      - name: Clear Cluster 
+        runi: aws ecs list-tasks --cluster deploy-cluster
+ 
       - name: Load and deploy
         run: aws ecs create-service --cluster deploy-cluster --service-name zp-wordpress --task-definition zp-wp --desired-count=1
-
