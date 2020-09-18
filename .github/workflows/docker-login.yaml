@@ -25,7 +25,7 @@ jobs:
           TASK=$(echo $TASK | sed 's/.*task\///')
           TASK=$(echo $TASK | sed 's/.[[:blank:]].*//')
           echo $TASK
-          [[ -z "$TASK" ]] && echo "Nessun task trovato" || aws ecs stop-task --task $TASK  
+          [[ -z "$TASK" ]] && echo "Nessun task trovato" || aws ecs stop-task --task $TASK --cluster deploy-cluster  
           #aws ecs delete-service --cluster deploy-cluster --service zp-wordpress
 
   build-n-push:
