@@ -20,8 +20,10 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - name: Clear Cluster 
-        run: | 
+        run: |
+ 
           TASK=$(aws ecs list-tasks --cluster deploy-cluster)
+          echo $TASK
           TASK=$(echo $TASK | sed 's/.*task\///')
           TASK=$(echo $TASK | sed 's/[[:blank:]].*//')
           echo $TASK
