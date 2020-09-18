@@ -1,5 +1,12 @@
 *.swp
-.git*
 *.env
 *.pem
 *.csv
+
+
+.DS_Store
+.vscode/
+.idea/
+.git*/
+docker-compose.*
+Dockerfile
