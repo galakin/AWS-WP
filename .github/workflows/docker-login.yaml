@@ -11,7 +11,7 @@ jobs:
     steps: 
       - name: Clear Cluster 
         run: | 
-          TASK=$(saws ecs list-tasks --cluster deploy-cluster)
+          TASK=$(aws ecs list-tasks --cluster deploy-cluster)
           TASK=$(echo $TASK | sed 's/.*task\///')
           TASK=$(echo $TASK | sed 's/[[:blank:]].*//')
           echo $TASK
