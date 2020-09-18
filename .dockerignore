@@ -1,2 +1,5 @@
 *.swp
 .git*
+*.env
+*.pem
+*.csv
